@@ -1,8 +1,8 @@
-const rawApiUrl = process.env.NEXT_PUBLIC_API_URL;
-if (!rawApiUrl) {
-  throw new Error('NEXT_PUBLIC_API_URL environment variable is missing');
+const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || '';
+if (!rawApiUrl && typeof window !== 'undefined') {
+  console.warn('NEXT_PUBLIC_API_URL environment variable is missing');
 }
-export const API_URL = rawApiUrl.replace(/"/g, '').replace(/\/+$/, '');
+export const API_URL = (rawApiUrl || 'http://localhost:3001/api').replace(/"/g, '').replace(/\/+$/, '');
 
 class ApiClient {
   private async fetch<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
