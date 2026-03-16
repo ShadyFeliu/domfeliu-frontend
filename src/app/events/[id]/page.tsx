@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { Metadata, ResolvingMetadata } from 'next';
 import { api, getMediaUrl } from '@/lib/api';
 import { Event } from '@/types';
