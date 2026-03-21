@@ -2,7 +2,7 @@ const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || '';
 if (!rawApiUrl && typeof window !== 'undefined') {
   console.warn('NEXT_PUBLIC_API_URL environment variable is missing');
 }
-export const API_URL = (rawApiUrl || 'http://localhost:3001/api').replace(/"/g, '').replace(/\/+$/, '');
+export const API_URL = (rawApiUrl || 'http://localhost:3001').replace(/"/g, '').replace(/\/+$/, '');
 
 class ApiClient {
   private async fetch<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
@@ -84,7 +84,7 @@ export function getMediaUrl(url: string | null | undefined): string {
   if (!url) return '';
   
   // Clean potential quotes from env vars and handle normalization
-  const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || API_URL || 'http://localhost:3001/api';
+  const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || API_URL || 'http://localhost:3001';
   const cleanApiUrl = rawApiUrl.replace(/"/g, '').replace(/\/+$/, '');
   
   // Base server URL (strip /api)
